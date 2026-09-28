@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f26/STARTER-team01
 owner: ucsb-cs156-f26
 repo_name: STARTER-team01
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"team01-java25-audit","number":4,"title":"F26: align starter with the Java 25 course toolchain (SDKMAN, Maven wrapper, CI, Dokku Dockerfile, docs)","url":"https://github.com/ucsb-cs156-f26/STARTER-team01/pull/4"}]
