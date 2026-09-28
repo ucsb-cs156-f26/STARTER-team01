@@ -1,33 +1,30 @@
-FROM ubuntu:22.04
+# Build stage: Maven 3.9.16 on Eclipse Temurin JDK 25 (Ubuntu noble).
+# Keep the Java version here in sync with .java-version, .sdkmanrc,
+# system.properties and <java.version> in pom.xml.
+FROM maven:3.9.16-eclipse-temurin-25-noble AS builder
 
-# Set environment variables to avoid interactive prompts during installation
-ENV DEBIAN_FRONTEND=noninteractive
+WORKDIR /home/app
 
-RUN apt-get update 
-RUN apt-get install -y openjdk-25-jdk
-RUN apt-get install -y  curl  
-RUN apt-get install -y  bash  
-RUN apt-get install -y maven  
-RUN apt-get install -y  python3 
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/*
+# Copy the pom first so that dependency downloads are cached by Docker
+# unless the pom changes.
+COPY pom.xml .
+RUN mvn -B -Pproduction dependency:go-offline
 
-# Set JAVA_HOME environment variable
-ENV JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
-ENV PATH="$JAVA_HOME/bin:$PATH"
+COPY . .
+
+RUN mvn -B -Pproduction -DskipTests clean package
+
+# Runtime stage: Java 25 JRE only (Ubuntu noble, so startup.sh can use GNU cut)
+FROM eclipse-temurin:25-jre-noble
+
+WORKDIR /home/app
+
+COPY --from=builder /home/app/startup.sh /home/app/startup.sh
+COPY --from=builder /home/app/target/team01-1.0.0.jar /home/app/target/team01-1.0.0.jar
+
+RUN chmod +x /home/app/startup.sh
 
 # Verify installation
 RUN java -version
 
-WORKDIR /app
-
-# Verify installation
-RUN java -version
-RUN curl --version
-
-COPY . /home/app
-
-RUN mvn -B -Pproduction -DskipTests -f /home/app/pom.xml clean package
-
-RUN ["chmod", "+x", "/home/app/startup.sh"]
 ENTRYPOINT ["/home/app/startup.sh","/home/app/target/team01-1.0.0.jar"]
