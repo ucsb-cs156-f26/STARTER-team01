@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f26/STARTER-team01
 owner: ucsb-cs156-f26
 repo_name: STARTER-team01
-pull_requests: [{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-java25","number":2,"title":"Migration to Java 25 and Spring Boot 3.5.6","url":"https://github.com/ucsb-cs156-f26/STARTER-team01/pull/2"},{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-starterCodeImprovements","number":1,"title":"Improving Starter Code Readability","url":"https://github.com/ucsb-cs156-f26/STARTER-team01/pull/1"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-java25","number":2,"title":"Migration to Java 25 and Spring Boot 3.5.6","url":"https://github.com/ucsb-cs156-f26/STARTER-team01/pull/2"}]
