@@ -20,11 +20,11 @@ jobs:
     - uses: szenius/set-timezone@v1.2
       with:
         timezoneLinux: "America/Los_Angeles"
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Set up Java (version from .java-version file)
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
-         distribution: semeru # See: https://github.com/actions/setup-java#supported-distributions
+         distribution: temurin # matches the -tem suffix in .sdkmanrc; see https://github.com/actions/setup-java#supported-distributions
          java-version-file: ./.java-version
   
     - name: Build with Maven

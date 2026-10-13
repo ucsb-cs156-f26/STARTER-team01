@@ -16,8 +16,8 @@ env:
   REPO_NAME: ${{ github.event.repository.name }}
   # The columns in the Kanban board that we are interested in
   COLUMNS: "Todo, In Progress, In Review, Done"
-  START_DATE: "2025-10-27"
-  END_DATE: "2025-11-08"  # Set the end date for the workflow
+  START_DATE: "2026-10-21"
+  END_DATE: "2026-11-04"  # Set the end date for the workflow
 
 jobs:
 
@@ -103,7 +103,7 @@ jobs:
       issue_counts: ${{ steps.count_issues.outputs.issue_counts }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Debugging Output
         run: |
           echo "needs.get_team_name.outputs.team=${{needs.get_team_name.outputs.team}}"
@@ -271,7 +271,7 @@ jobs:
           echo "issue_counts=${issueCountsJson}" >> $GITHUB_OUTPUT
           Write-Host "Issue count process completed"
       - name: Upload issue counts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: issue_counts
           path: issue_counts.json
@@ -292,7 +292,7 @@ jobs:
       ascii_table: ${{ steps.generate_table.outputs.ascii_table }}
     steps:
       - name: Download issue counts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: issue_counts
 
@@ -379,7 +379,7 @@ jobs:
           echo "ascii_table=${table}" >> $GITHUB_OUTPUT
 
       - name: Upload ASCII Table
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ascii_table
           path: ascii_table.txt
@@ -393,7 +393,7 @@ jobs:
     if: needs.check_date.outputs.continue == 'true'
     steps:
       - name: Download ASCII Table
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: ascii_table
 

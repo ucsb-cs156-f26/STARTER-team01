@@ -27,8 +27,8 @@ Note that it can take a long time for the display to update, and you may even ne
 
 You now need to wait for this job to finish, kick off job `04-gh-pages-rebuild-part-2`, and then complete.
 
-It will create the Github Pages site for the repo, with links to documentation for both the backend (javadoc) and
-frontend (storybook).
+It will create the Github Pages site for the repo, with links to the backend documentation (javadoc)
+and the test coverage reports (jacoco and pitest).
 
 It is not unusual for this job to fail (have a red X) the first time you run it.  Use the `Rerun Failed Jobs` option to just rerun the parts that failed.
 
@@ -77,7 +77,7 @@ Return to the main page for the repo,  click on the gear at right, and click the
 
 Check that the link loads the Github Pages site.  It should look something like this, but with your repo name in place of the one shown.
    
-If it doesn't come up right away, check to see whether the  `02-gh-pages-rebuild`  has finished yet.  You may find that it takes a minute or two for the page to become available, and another minute or two before the `javadoc` and `storybook` links for the main branch begin working; but within a minute or two of the  `02-gh-pages-rebuild` finishing both links should work.
+If it doesn't come up right away, check to see whether the  `02-gh-pages-rebuild`  has finished yet.  You may find that it takes a minute or two for the page to become available, and another minute or two before the `javadoc`, `jacoco` and `pitest` links for the main branch begin working; but within a minute or two of the  `02-gh-pages-rebuild` finishing the links should work.
 
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/1119017/235750584-2e66dc07-12b3-4593-a289-7e2f2b2060c2.png">
    
@@ -91,20 +91,11 @@ The javadoc should look something like this:
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/1119017/235764018-3de19026-bab8-4308-93bf-7cad2679cbf6.png">
 
-The storybook should look something like this:
-
-<img width="864" alt="image" src="https://github.com/user-attachments/assets/7f586b76-fbc6-4df8-8fc0-f99a145c413c">
-
-Note that the Storybook may not appear unless/until you update the `CHROMATIC_PROJECT_TOKEN` which is typically a later
-stage in the setup instructions documented here: <https://ucsb-cs156.github.io/topics/chromatic/>
-
 # Keeping the site up to date
 
-As you add pull requests, the javadoc and storybook will be generated for those as well by GitHub Actions scripts. 
+As you add pull requests, the javadoc and coverage reports will be generated for those as well by GitHub Actions scripts. 
 
-Note that:
-* The javadoc is only generated when there is a change to the backend code (either files under `src/` or the `pom.xml` file)
-* The storybook is only generated when there is a change to the frontend code (files under `frontend/`)
+Note that the javadoc is only generated when there is a change to the backend code (either files under `src/` or the `pom.xml` file).
 
 # Regenerating the site
 
