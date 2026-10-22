@@ -4,15 +4,16 @@ set -e
 # Disable path conversion on Windows
 export MSYS_NO_PATHCONV=1
 
-IMAGE_NAME=demo_spring_react_example_dev
+IMAGE_NAME=team01_dev
 
-docker build -t "${IMAGE_NAME}" - < Dockerfile
+# Use the builder stage of the Dockerfile (JDK 25 + Maven); the final stage is a JRE-only runtime image
+docker build -t "${IMAGE_NAME}" --target builder .
 
 IMAGE_ID=$(docker images -q "${IMAGE_NAME}")
 CONTAINER_NAME="${IMAGE_NAME}_${IMAGE_ID}"
 
 if [ ! "$(docker ps -aq -f "name=${CONTAINER_NAME}")" ]; then
-  docker create -p 8080:8080 -p 3000:3000 -p 6006:6006 -v "$(pwd):/app" -it --name "${CONTAINER_NAME}" "${IMAGE_ID}" /bin/bash
+  docker create -p 8080:8080 -v "$(pwd):/app" -w /app -it --name "${CONTAINER_NAME}" "${IMAGE_ID}" /bin/bash
 fi
 
 if [ "$(docker ps -aq -f "name=${CONTAINER_NAME}" -f "status=running")" ]; then

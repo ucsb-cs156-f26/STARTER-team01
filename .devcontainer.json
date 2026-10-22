@@ -1,3 +1,6 @@
 {
-  "dockerFile": "Dockerfile"
+  "build": {
+    "dockerfile": "Dockerfile",
+    "target": "builder"
+  }
 }

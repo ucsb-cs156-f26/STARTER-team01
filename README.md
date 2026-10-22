@@ -1,15 +1,15 @@
 # STARTER-team01
 
-Instructions: <https://ucsb-cs156.github.io/s26/lab/team01.html>
+Instructions: <https://ucsb-cs156.github.io/f26/lab/team01.html>
 
-TODO: change heading above to your repo name, e.g. `# team01-s26-17`
+TODO: change heading above to your repo name, e.g. `# team01-f26-03`
 
 TODO: Add a link to the deployed Dokku app for your team here, e.g.
 
 Deployments:
 
-* Prod: <https://team01.dokku-17.cs.ucsb.edu>
-* QA: <https://team01-qa.dokku-17.cs.ucsb.edu>
+* Prod: <https://team01.dokku-03.cs.ucsb.edu>
+* QA: <https://team01-qa.dokku-03.cs.ucsb.edu>
 
 TODO: Fill in this table with correct information. 
 
@@ -26,10 +26,40 @@ Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
 after completing your own.
 
-# Versions
-* Java: 21
-* node: 20.17.0
-See [docs/versions.md](docs/versions.md) for more information on upgrading versions.
+# Java 25 setup with SDKMAN
+
+This project follows the course instructions for Java 25.0.4, using the
+recommended `25.0.4-tem` distribution via SDKMAN, with Maven 3.9.16
+(also provided by the included Maven Wrapper, `./mvnw`).
+See the [course software installation instructions](https://ucsb-cs156.github.io/f26/info/software.html)
+for details on installing SDKMAN, Java and Maven.
+
+If you use SDKMAN, the setup is:
+
+```bash
+sdk install java 25.0.4-tem
+sdk install maven 3.9.16
+sdk env install
+java -version
+mvn --version
+```
+
+The project includes an `.sdkmanrc` file so that the correct Java version is
+selected automatically when SDKMAN is present (run `sdk env` in this
+directory to select it).  Every `mvn` command below can also be run as
+`./mvnw`, which downloads and uses the pinned Maven version without a
+separate Maven install.
+
+Both `java -version` and `mvn --version` should report Java 25.0.4 before you
+run any of the commands below; with an older Java you may see confusing build
+errors (for example, JaCoCo or Pitest complaining about an
+`Unsupported class file major version`, or dozens of `cannot find symbol`
+errors for Lombok-generated methods).
+
+There is no frontend in this starter (only the Spring Boot backend and its
+login page), so Node and npm are not needed for team01.
+See [docs/versions.md](docs/versions.md) for the list of files to update
+when changing the Java or Maven version.
 
 # Brief overview of starter code 
 
@@ -37,14 +67,18 @@ TODO: remove this header and content of this section before submitting.
 However leave the section `# Overview of application` and its content 
 intact.
 
-The starter code here starts with a base similar to `team01`, but with 
-some extra frontend code on top of the of backend CRUD operations
-that were present in `team01`.
+The starter code is a Spring Boot backend with working CRUD endpoints
+(POST, GET all, GET by id, PUT, DELETE) for a few example database tables
+such as `UCSBDates`, `UCSBDiningCommons` and `Restaurants`, plus the
+infrastructure those need (OAuth login, an H2 database on localhost,
+Postgres on Dokku, Liquibase migrations, Swagger, JaCoCo and Pitest).
+The only frontend is the login page; you interact with the API through
+Swagger.
 
 You can use this code as a basis to:
-* Add the backend code from team01 *in stages* as suggested in the issues (doing that in "one giant pull request" is *not recommended) 
-* Add a frontend on top of the backend CRUD features you added in team01, using the existing
-  code as examples.
+* Add the backend code for your team's six new tables *in stages* as
+  suggested in the issues (doing that in "one giant pull request" is
+  *not* recommended), using the existing tables as examples.
 
 # Overview of application
 
@@ -74,8 +108,6 @@ will likely see an error such as:
 Then, the app should be available on <http://localhost:8080>
 
 If it doesn't work at first, e.g. you have a blank page on  <http://localhost:8080>, give it a minute and a few page refreshes.  Sometimes it takes a moment for everything to settle in.
-
-If you see the following on localhost, make sure that you also have the frontend code running in a separate window.
 
 
 # Getting Started on Dokku
