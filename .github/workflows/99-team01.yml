@@ -182,7 +182,7 @@ jobs:
             - [ ] The `main` branch (after all PRs merged) has been reployed to the dokku instance via:
                   <tt>dokku git:sync ${{env.ASN_NAME}} <i>url</i> main</tt><br />
                   <tt>dokku ps:rebuild ${{env.ASN_NAME}}</tt>
-            - [ ] The assignment has been submitted on Canvas
+            - [ ] The assignment has been submitted on Gradescope
             
             ## Details
             
@@ -582,7 +582,7 @@ jobs:
 
             When you are done with all issues for `${{env.name}}`, please give your full attention to 
             helping others on your team to complete the sprint, so that the team
-            is ready to submit on Canvas by the deadline.
+            is ready to submit on Gradescope by the deadline.
             
             
       - name: Add `PUT` (edit) endpoint for a single record in table
@@ -648,7 +648,7 @@ jobs:
 
             When you are done with all issues for `${{env.name}}`, please give your full attention to 
             helping others on your team to complete the sprint, so that the team
-            is ready to submit on Canvas by the deadline.
+            is ready to submit on Gradescope by the deadline.
             
 
       - name: Add `DELETE` endpoint for a specific record in table
@@ -708,6 +708,6 @@ jobs:
 
             When you are done with all issues for `${{env.name}}`, please give your full attention to 
             helping others on your team to complete the sprint, so that the team
-            is ready to submit on Canvas by the deadline.
+            is ready to submit on Gradescope by the deadline.
             
           
